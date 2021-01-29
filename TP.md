@@ -25,7 +25,7 @@
 
 - Commencer à la fin de l'étape 2 : `git checkout step-2`
 - Extraire la lecture des données métier dans un dossier `business` spécifique
-- Extraire les données dans un fichier dédié 
+- Extraire les données dans un fichier dédié
 
 ## Etape 4 : Formatter les données exposées à renvoyer
 
@@ -37,15 +37,17 @@
 ## Etape 5 : Ajouter la route détail produit
 
 - Commencer à la fin de l'étape 4 : `git checkout step-4`
-- Créer un test sur une nouvelle route `/produits/{identifiant-produit}`, exemple : `/produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test pase au rouge).
-- Créer un controller pour afficher le détail d'un produit (avec la `description`)
+- Créer un test sur une nouvelle route `GET /produits/{identifiant-produit}`, exemple : `GET /produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test passe au rouge)
+- Sur le modèle du `GET /produits`, créer un controller pour afficher le détail d'un produit qui s'appuie sur la partie business (inclure la propriété `description`)
 
-## Etape 6 : Enrichissement de l'interceptor 
+## Etape 6 : Enrichissement de l'interceptor
+
 - Commencer à la fin de l'étape 5 : `git checkout step-5`
 - Ajouter la vérification des données en entrée : l'ID en entrée n'est pas au bon format, la route renvoit une 400
-- Renvoyer une erreur 404 dans le cas où un produit n'est pas trouvé 
+- Renvoyer une erreur 404 dans le cas où un produit n'est pas trouvé
 
 ## Etape 7 : Déployer sur Heroku
+
 - Commencer à la fin de l'étape 5 : `git checkout step-6`
-- Rendez-vous heroku.com 
-- Après avoir créé son compte, vous pouvez créer puis déployer une application à partir de son code source publié sur github 
+- Rendez-vous heroku.com
+- Après avoir créé son compte, vous pouvez créer puis déployer une application à partir de son code source publié sur github

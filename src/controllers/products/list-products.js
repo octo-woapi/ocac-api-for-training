@@ -4,6 +4,21 @@ exports.listProductsRoute = {
   method: "GET",
   path: "/produits",
   handler: (request, h) => {
-    return h.response(productsBusiness.listProducts());
+    const productsList = productsBusiness.listProducts();
+    const formattedProducts = productsFormat(productsList);
+    return h.response(formattedProducts);
   },
 };
+
+function productsFormat(products) {
+  const formattedProducts = [];
+  products.forEach((product) => {
+    formattedProducts.push({
+      id: product.id,
+      type: product.type,
+      titre: product.titre,
+      description_courte: product.description_courte,
+    });
+  });
+  return formattedProducts;
+}
