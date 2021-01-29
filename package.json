@@ -1,0 +1,40 @@
+{
+  "name": "ocac-api-for-training",
+  "version": "0.0.1",
+  "description": "OCTO Woapi nodejs API skeleton",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config ./src/index.js",
+    "dev": "nodemon -r dotenv/config --verbose",
+    "test": "mocha src/**/*test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octo-woapi/ocac-api-for-training.git"
+  },
+  "keywords": [
+    "API",
+    "OCTO",
+    "OCAC",
+    "nodejs",
+    "hapi"
+  ],
+  "author": "OCTO Technology - Tribu WOAPI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/octo-woapi/ocac-api-for-training/issues"
+  },
+  "homepage": "https://github.com/octo-woapi/ocac-api-for-training#readme",
+  "dependencies": {
+    "@hapi/hapi": "20.0.3",
+    "@hapi/boom": "9.0.0",
+    "joi": "17.3.0",
+    "dotenv": "8.2.0"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "8.2.1",
+    "nodemon": "2.0.6",
+    "supertest": "6.0.1"
+  }
+}
