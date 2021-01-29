@@ -43,7 +43,7 @@
 ## Etape 6 : Enrichissement de l'interceptor
 
 - Commencer à la fin de l'étape 5 : `git checkout step-5`
-- Ajouter la vérification des données en entrée : l'ID en entrée n'est pas au bon format, la route renvoit une 400
+- Toujours en TDD, ajouter la vérification des données en entrée : l'ID en entrée n'est pas au bon format, la route renvoit une 400
 - Renvoyer une erreur 404 dans le cas où un produit n'est pas trouvé
 
 ## Etape 7 : Déployer sur Heroku
