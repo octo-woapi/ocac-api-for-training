@@ -1,0 +1,67 @@
+---
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: "Cadastre de formation"
+  description: "API permettant d’exposer les collections du référentiel CADASTRE VYV\n"
+servers:
+- url: "https://data-formation.groupe-vyv.fr/cadastre/v1/"
+components:
+  securitySchemes:
+    vyvConnect:
+      type: oauth2
+      description: Cette API utilise OAuth2 avec un flow Client Credentials
+      flows:
+        clientCredentials:
+          tokenUrl: https://data-formation.groupe-vyv.fr/oauth2/token
+          #scopes: {}
+          scopes:
+            CADASTRE: Scope permettant d'accéder à l'API Cadastre de formation
+security: 
+  #- vyvConnect: []
+  - vyvConnect: 
+    - CADASTRE
+paths:
+  /produits:
+    get:
+      summary: "Liste des services du référentiel CADASTRE VYV"
+      description: "Fourniture de la liste des services du référentiel CADASTRE VYV"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                example:
+                - id: dfae5809-74ea-4e8e-b42a-a837ce2ef5a1
+                  type: service
+                  titre: some title
+                  description_courte: some short description
+
+  '/produits/{id}':
+    get:
+      summary: "Récupère les détails d'un service du référentiel CADASTRE VYV"
+      description: "Récupération des détails d'un services du référentiel CADASTRE VYV à partir de son identifiant unique"
+      parameters: 
+        - name: "id"
+          in: "path"
+          description: "ID du produit"
+          required: true
+          schema: 
+            type: string
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                example:
+                  id: dfae5809-74ea-4e8e-b42a-a837ce2ef5a1
+                  type: service
+                  titre: some title
+                  description_courte: some short description
+                  description: some long description
+        "400":
+          description: "Provided ID must be an uuid"
+        "404":
+          description: "Product not found"

@@ -1,0 +1,106 @@
+---
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: "Cadastre de formation"
+  description: "API permettant d’exposer les collections du référentiel CADASTRE VYV\n"
+servers:
+- url: "https://data-formation.groupe-vyv.fr/cadastre/v1/"
+components:
+  securitySchemes:
+    vyvConnect:
+      type: oauth2
+      description: Cette API utilise OAuth2 avec un flow Client Credentials
+      flows:
+        clientCredentials:
+          tokenUrl: https://data-formation.groupe-vyv.fr/oauth2/token
+          #scopes: {}
+          scopes:
+            CADASTRE: Scope permettant d'accéder à l'API Cadastre de formation
+security: 
+  #- vyvConnect: []
+  - vyvConnect: 
+    - CADASTRE
+paths:
+  /produits:
+    get:
+      summary: "Liste des services du référentiel CADASTRE VYV"
+      description: "Fourniture de la liste des services du référentiel CADASTRE VYV"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                example:
+                - type: service
+                  id: dfae5809-74ea-4e8e-b42a-a837ce2ef5a1
+                  wasInformedBy: pavard
+                  wasGeneratedBy: updateService
+                  wasStartedAtTime: 2022-12-10T11:55:32.445
+                  codeInterne: teleconsultation1
+                  libelle: teleconsultation médicale
+                  thematiques:    
+                    - wasInformedBy: griezmann
+                      wasGeneratedBy: updateMomentDeVie
+                      wasStartedAtTime: 2022-10-07T14:55:37.417
+                      id: e6daa382-4582-46f4-aa8a-0580df4e1816
+                      codeInterne: MDVFF
+                      libelle: Moment de Vie - Formateur / Formé
+                    - wasInformedBy: dembele
+                      wasGeneratedBy: updateMomentDeVie
+                      wasStartedAtTime: 2022-10-07T14:55:18.434
+                      id: 71803cc3-6c4b-4b28-a977-2a3c9f9e6331
+                      codeInterne: MDVDV
+                      libelle: Moment de Vie - Départ en Vacances
+                    - wasInformedBy: pogba
+                      wasGeneratedBy: createMomentDeVie
+                      wasStartedAtTime: 2022-12-10T11:54:51.453
+                      id: 36842ec1-1ab5-453f-b971-74456df561be
+                      codeInterne: Covid
+                      libelle: crise sanitaire COVID19
+
+  '/produits/{id}':
+    get:
+      summary: "Récupère les détails d'un service du référentiel CADASTRE VYV"
+      description: "Récupération des détails d'un services du référentiel CADASTRE VYV à partir de son identifiant unique"
+      parameters: 
+        - name: "id"
+          in: "path"
+          description: "ID du produit"
+          required: true
+          schema: 
+            type: integer
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                example:
+                  type: service
+                  id: dfae5809-74ea-4e8e-b42a-a837ce2ef5a1
+                  wasInformedBy: pavard
+                  wasGeneratedBy: updateService
+                  wasStartedAtTime: 2022-12-10T11:55:32.445
+                  codeInterne: teleconsultation1
+                  libelle: teleconsultation médicale
+                  thematiques:    
+                    - wasInformedBy: griezmann
+                      wasGeneratedBy: updateMomentDeVie
+                      wasStartedAtTime: 2022-10-07T14:55:37.417
+                      id: e6daa382-4582-46f4-aa8a-0580df4e1816
+                      codeInterne: MDVFF
+                      libelle: Moment de Vie - Formateur / Formé
+                    - wasInformedBy: dembele
+                      wasGeneratedBy: updateMomentDeVie
+                      wasStartedAtTime: 2022-10-07T14:55:18.434
+                      id: 71803cc3-6c4b-4b28-a977-2a3c9f9e6331
+                      codeInterne: MDVDV
+                      libelle: Moment de Vie - Départ en Vacances
+                    - wasInformedBy: pogba
+                      wasGeneratedBy: createMomentDeVie
+                      wasStartedAtTime: 2022-12-10T11:54:51.453
+                      id: 36842ec1-1ab5-453f-b971-74456df561be
+                      codeInterne: Covid
+                      libelle: crise sanitaire COVID19

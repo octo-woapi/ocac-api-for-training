@@ -1,0 +1,46 @@
+---
+openapi: "3.0.3"
+info:
+  version: 1.0.0
+  title: "Cadastre de formation"
+servers:
+- url: "https://data-formation.groupe-vyv.fr/cadastre/v1/"
+components:
+  securitySchemes:
+    vyvConnect:
+      type: oauth2
+      description: Cette API utilise OAuth2 avec un flow Client Credentials
+      flows:
+        clientCredentials:
+          tokenUrl: https://data-formation.groupe-vyv.fr/oauth2/token
+          #scopes: {}
+          scopes:
+            CADASTRE: Scope permettant d'accéder à l'API Cadastre de formation
+security: 
+  #- vyvConnect: []
+  - vyvConnect: 
+    - CADASTRE
+paths:
+  /produits:
+    get:
+      summary: "Liste des produits"
+      responses:
+        "200":
+          description: "Successful response"
+
+  '/produits/{id}':
+    get:
+      summary: "Récupère les détails d'un produit"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          schema: 
+            type: string
+      responses:
+        "200":
+          description: "Successful response"
+        "400":
+          description: "Provided ID must be an uuid"
+        "404":
+          description: "Product not found"
