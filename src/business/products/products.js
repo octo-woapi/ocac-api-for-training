@@ -3,16 +3,11 @@ const productsFromFile = require("../../datas/products-from-file");
 const { productRepository } = require("../../repositories/product-repository")
 
 exports.listProducts = () => {
-  return productsFromFile.products;
+  return productRepository.findAll();
 };
 
-exports.findProduct = (productId) => {
-  let foundProduct = null;
-  productsFromFile.products.forEach((product) => {
-    if (product.id === productId) {
-      foundProduct = product;
-    }
-  });
+exports.findProduct = async (productId) => {
+  const foundProduct = await productRepository.findOne(productId)
   return foundProduct;
 };
 

@@ -2,10 +2,14 @@ const request = require("supertest");
 const serverConfiguration = require("../../server-configuration");
 const server = serverConfiguration.initServer();
 const expect = require("chai").expect;
+const { productRepository } = require('../../repositories/product-repository')
 
 describe("GET /produits/{identifiant-produit}", function () {
-  it("renvoi le détail d'un produit d'assurance", function (done) {
-    // GIVEN
+  before(async () => {
+    await productRepository.removeAll()
+  })
+
+  it("renvoi le détail d'un produit d'assurance", async function () {
     const expected = {
       id: "16146a21-c799-4d01-a7be-8965682d2549",
       type: "service",
@@ -15,16 +19,15 @@ describe("GET /produits/{identifiant-produit}", function () {
       description:
         "Disposez d'un guide pratique pour comprendre votre rôle d’aidant et mieux le vivre au quotidien.",
     };
+    await productRepository.create(expected)
 
     // WHEN
-    request(server.listener)
+    const response = await request(server.listener)
       .get("/produits/16146a21-c799-4d01-a7be-8965682d2549")
 
-      // THEN
-      .expect(200, (err, resp) => {
-        expect(resp.body).to.eql(expected);
-        done();
-      });
+    // THEN
+    expect(response.statusCode).to.eql(200);
+    expect(response.body).to.eql(expected);
   });
 
   describe("L'ID fourni n'est pas au bon format UUID", function () {

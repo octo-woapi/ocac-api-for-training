@@ -4,10 +4,10 @@
   "description": "OCTO Woapi nodejs API skeleton",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node -r dotenv/config ./src/index.js",
+    "start": "npm run db:migrate:up && node -r dotenv/config ./src/index.js",
     "dev": "nodemon -r dotenv/config --verbose",
     "prod": "npm run db:migrate:up && npm start",
-    "test": "mocha src/**/*test.js",
+    "test": "DB_NAME=db.sqlite.test npm run db:migrate:up && mocha src/**/*test.js",
     "db:migrate:up": "node ./src/bin/database-migration.js"
   },
   "repository": {

@@ -82,3 +82,8 @@
 - Attention, c'est à vous de générer l'ID du produit
 - En réponse, nous nous attendons à une 201, accompagné de l'ID du produit nouvellement créé 
 
+## Etape 10 : lire les produits en base de données 
+
+- Commencer à la fin de l'étape 9 : `git checkout step-9`
+- Les données sont actuellements lues dans le fichier `products-from-file.js`
+- Créez des fonctions de lecture en base de données au sein du repository et appuyez-vous dessus lors des `GET /produits` et `GET /produits/{id}`

@@ -17,8 +17,8 @@ exports.findProductRoute = {
       }),
     },
   },
-  handler: (request, h) => {
-    const product = productsBusiness.findProduct(request.params.id);
+  handler: async (request, h) => {
+    const product = await productsBusiness.findProduct(request.params.id);
     if (product === null) {
       throw Boom.notFound("Le produit n'existe pas");
     }
