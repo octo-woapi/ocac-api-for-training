@@ -38,26 +38,26 @@ paths:
                   wasInformedBy: pavard
                   wasGeneratedBy: updateService
                   wasStartedAtTime: 2022-12-10T11:55:32.445
-                  codeInterne: teleconsultation1
+                  code_interne: teleconsultation1
                   libelle: teleconsultation médicale
                   thematiques:    
                     - wasInformedBy: griezmann
                       wasGeneratedBy: updateMomentDeVie
                       wasStartedAtTime: 2022-10-07T14:55:37.417
                       id: e6daa382-4582-46f4-aa8a-0580df4e1816
-                      codeInterne: MDVFF
+                      code_interne: MDVFF
                       libelle: Moment de Vie - Formateur / Formé
                     - wasInformedBy: dembele
                       wasGeneratedBy: updateMomentDeVie
                       wasStartedAtTime: 2022-10-07T14:55:18.434
                       id: 71803cc3-6c4b-4b28-a977-2a3c9f9e6331
-                      codeInterne: MDVDV
+                      code_interne: MDVDV
                       libelle: Moment de Vie - Départ en Vacances
                     - wasInformedBy: pogba
                       wasGeneratedBy: createMomentDeVie
                       wasStartedAtTime: 2022-12-10T11:54:51.453
                       id: 36842ec1-1ab5-453f-b971-74456df561be
-                      codeInterne: Covid
+                      code_interne: Covid
                       libelle: crise sanitaire COVID19
 
   '/produits/{id}':
@@ -83,24 +83,24 @@ paths:
                   wasInformedBy: pavard
                   wasGeneratedBy: updateService
                   wasStartedAtTime: 2022-12-10T11:55:32.445
-                  codeInterne: teleconsultation1
+                  code_interne: teleconsultation1
                   libelle: teleconsultation médicale
                   thematiques:    
                     - wasInformedBy: griezmann
                       wasGeneratedBy: updateMomentDeVie
                       wasStartedAtTime: 2022-10-07T14:55:37.417
                       id: e6daa382-4582-46f4-aa8a-0580df4e1816
-                      codeInterne: MDVFF
+                      code_interne: MDVFF
                       libelle: Moment de Vie - Formateur / Formé
                     - wasInformedBy: dembele
                       wasGeneratedBy: updateMomentDeVie
                       wasStartedAtTime: 2022-10-07T14:55:18.434
                       id: 71803cc3-6c4b-4b28-a977-2a3c9f9e6331
-                      codeInterne: MDVDV
+                      code_interne: MDVDV
                       libelle: Moment de Vie - Départ en Vacances
                     - wasInformedBy: pogba
                       wasGeneratedBy: createMomentDeVie
                       wasStartedAtTime: 2022-12-10T11:54:51.453
                       id: 36842ec1-1ab5-453f-b971-74456df561be
-                      codeInterne: Covid
+                      code_interne: Covid
                       libelle: crise sanitaire COVID19

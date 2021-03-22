@@ -11,7 +11,7 @@ exports.products = [
   {
     id: "16146a21-c799-4d01-a7be-8965682d2549",
     type: "service",
-    codeInterne: "teleconsultationmed",
+    code_interne: "teleconsultationmed",
     titre: "Téléconseil médical",
     description_courte:
       "Obtenez une réponse rapide et personnalisée à toutes vos questions d’ordre médical.",
@@ -21,7 +21,7 @@ exports.products = [
   {
     id: "a5f71f43-b17e-478d-b565-02228506fe85",
     type: "service",
-    codeInterne: "teleconsultationmedsasnrdv",
+    code_interne: "teleconsultationmedsasnrdv",
     titre: "Téléconsultation médicale sans rendez-vous",
     description_courte:
       "Bénéficiez d’un accès aux soins simplifié et personnalisé avec une plateforme dédiée aux aidants.",

@@ -62,4 +62,23 @@
     - Utiliseriez-vous `sqlite3` en production ? 
     - Quelles sont les limites d'une librairie comme `sequelize` ?
 
+## Etape 9 : Ajouter des données en base via la route de création de produits
+
+- Commencer à la fin de l'étape 8 : `git checkout step-8`
+- Créer un nouveau endpoint : `POST /produits` 
+- Ce endpoint va recevoir un body qui doit correspondre au format des données suivant : 
+    ```json
+    {
+        type: "service | soin", // string
+        code_interne: "un code interne", // string
+        titre: "un titre", // string
+        description_courte: // string
+        "une description courte",
+        description: // string
+        "une description longue",
+    }
+    ```
+- Ce endpoint doit s'appuyer sur un service qui va faire appel à la base de données nouvellement créée
+- Attention, c'est à vous de générer l'ID du produit
+- En réponse, nous nous attendons à une 201, accompagné de l'ID du produit nouvellement créé 
 
