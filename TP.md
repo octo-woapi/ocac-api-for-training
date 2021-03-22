@@ -48,6 +48,18 @@
 
 ## Etape 7 : Déployer sur Heroku
 
-- Commencer à la fin de l'étape 5 : `git checkout step-6`
+- Commencer à la fin de l'étape 6 : `git checkout step-6`
 - Rendez-vous heroku.com
 - Après avoir créé son compte, vous pouvez créer puis déployer une application à partir de son code source publié sur github
+
+## Etape 8 : Ajouter une base de données SQLite 
+
+- Déplacez-vous à l'étape 8 du TP : `git checkout step-8`
+- Questions : 
+    - A quoi servent les librairies `sqlite3` et `sequelize` ? 
+    - Quel est le rôle des `models` ? 
+    - A quel moment la base de données est-elle impactée par les modifications ? 
+    - Utiliseriez-vous `sqlite3` en production ? 
+    - Quelles sont les limites d'une librairie comme `sequelize` ?
+
+
