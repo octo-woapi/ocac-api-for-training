@@ -1,7 +1,7 @@
 ---
 openapi: "3.0.3"
 info:
-  version: 1.0.0
+  version: 0.0.0
   title: "Cadastre de formation"
   description: "API permettant d’exposer les collections du référentiel CADASTRE VYV\n"
 servers:

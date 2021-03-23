@@ -1,7 +1,7 @@
 ---
 openapi: "3.0.3"
 info:
-  version: 1.0.0
+  version: 2.0.0
   title: "Cadastre de formation"
   description: "API permettant d’exposer les collections du référentiel CADASTRE VYV\n"
 servers:
@@ -17,8 +17,32 @@ components:
           #scopes: {}
           scopes:
             CADASTRE: Scope permettant d'accéder à l'API Cadastre de formation
+  schemas:
+    DetailProduit:
+        title: Root Type for DetailProduit
+        description: Le détail d'un produit
+        type: object
+        properties:
+            id:
+                type: string
+            type:
+                type: string
+            titre:
+                type: string
+            description_courte:
+                type: string
+            description:
+                type: string
+        example:
+            id: 95ea40c0-56d2-4a77-8238-0b70fef815d4
+            type: soin
+            titre: Téléconseil médical
+            description_courte: Obtenez une réponse rapide et personnalisée à toutes vos questions d’ordre médical.
+            description: >-
+                Disposez d'un guide pratique pour comprendre votre rôle d’aidant et mieux le vivre au
+                quotidien.
+
 security: 
-  #- vyvConnect: []
   - vyvConnect: 
     - CADASTRE
 paths:
@@ -26,6 +50,17 @@ paths:
     get:
       summary: "Liste des services du référentiel CADASTRE VYV"
       description: "Fourniture de la liste des services du référentiel CADASTRE VYV"
+      parameters:
+        - 
+          name: type
+          description: Filtrer par type de produit
+          schema:
+            enum:
+              - soin
+              - service
+            type: string
+          in: query
+          required: false
       responses:
         "200":
           description: "Successful response"
@@ -37,6 +72,33 @@ paths:
                   type: service
                   titre: some title
                   description_courte: some short description
+    post: 
+      summary: "Créer un produit."
+      description: "Endpoint de création d'un produit. Lorsque le produit est créé, on récupère son ID."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetailProduit'
+            examples:
+              Produit:
+                value:
+                  type: service | soin
+                  code_interne: un code interne
+                  titre: un titre
+                  description_courte: une description courte
+                  description: une description longue
+      responses: 
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                Product ID:
+                  value: 5d52f17f-b331-4971-ac27-5a8419687074
 
   '/produits/{id}':
     get:
@@ -65,3 +127,31 @@ paths:
           description: "Provided ID must be an uuid"
         "404":
           description: "Product not found"
+
+  '/produits/{id}/type':
+    summary: Type d'un produit
+    put:
+      summary: Mettre à jour le type d'un produit.
+      description: >-
+          Endpoint permettant de mettre le type d'un produit à jour à partir de son ID. 2 types existent
+          à ce jour : "soin" et "service".
+      parameters: 
+        - name: "id"
+          in: "path"
+          description: "ID du produit"
+          required: true
+          schema: 
+            type: string  
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: string
+            examples:
+              type:
+                value:
+                  type: soin
+        required: true
+      responses:
+        '204':
+          description: Updated
