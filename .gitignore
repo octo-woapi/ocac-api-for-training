@@ -120,3 +120,6 @@ dist
 
 # internal use only
 STEPS.md
+
+db.sqlite
+db.sqlite.test

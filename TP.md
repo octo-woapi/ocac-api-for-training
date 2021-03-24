@@ -37,7 +37,7 @@
 ## Etape 5 : Ajouter la route détail produit
 
 - Commencer à la fin de l'étape 4 : `git checkout step-4`
-- Créer un test sur une nouvelle route `/produits/{identifiant-produit}`, exemple : `/produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test pase au rouge).
+- Créer un test sur une nouvelle route `/produits/{identifiant-produit}`, exemple : `/produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test passe au rouge).
 - Créer un controller pour afficher le détail d'un produit (avec la `description`)
 
 ## Etape 6 : Enrichissement de l'interceptor 
