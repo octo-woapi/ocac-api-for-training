@@ -61,5 +61,3 @@
     - A quel moment la base de données est-elle impactée par les modifications ? 
     - Utiliseriez-vous `sqlite3` en production ? 
     - Quelles sont les limites d'une librairie comme `sequelize` ?
-
-

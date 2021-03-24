@@ -3,8 +3,8 @@ const productsBusiness = require("../../business/products/products");
 exports.listProductsRoute = {
   method: "GET",
   path: "/produits",
-  handler: (request, h) => {
-    const productsList = productsBusiness.listProducts();
+  handler: async (request, h) => {
+    const productsList = await productsBusiness.listProducts();
     const formattedProducts = productsFormat(productsList);
     return h.response(formattedProducts);
   },

@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { database } = require("../../database");
 
-exports.MatchModel = database.define("product", {
+exports.ProductModel = database.define("product", {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,

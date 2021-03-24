@@ -8,4 +8,4 @@ exports.initDatabase = (storage) => {
   });
 };
 
-exports.database = this.initDatabase('db.sqlite');
+exports.database = this.initDatabase(process.env.DB_NAME || 'db.sqlite');
