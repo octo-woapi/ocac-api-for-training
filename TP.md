@@ -25,7 +25,7 @@
 
 - Commencer à la fin de l'étape 2 : `git checkout step-2`
 - Extraire la lecture des données métier dans un dossier `business` spécifique
-- Extraire les données dans un fichier dédié 
+- Extraire les données dans un fichier dédié
 
 ## Etape 4 : Formatter les données exposées à renvoyer
 
@@ -37,15 +37,53 @@
 ## Etape 5 : Ajouter la route détail produit
 
 - Commencer à la fin de l'étape 4 : `git checkout step-4`
-- Créer un test sur une nouvelle route `/produits/{identifiant-produit}`, exemple : `/produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test pase au rouge).
-- Créer un controller pour afficher le détail d'un produit (avec la `description`)
+- Créer un test sur une nouvelle route `GET /produits/{identifiant-produit}`, exemple : `GET /produits/16146a21-c799-4d01-a7be-8965682d2549`. (Le test passe au rouge)
+- Sur le modèle du `GET /produits`, créer un controller pour afficher le détail d'un produit qui s'appuie sur la partie business (inclure la propriété `description`)
 
-## Etape 6 : Enrichissement de l'interceptor 
+## Etape 6 : Enrichissement de l'interceptor
+
 - Commencer à la fin de l'étape 5 : `git checkout step-5`
-- Ajouter la vérification des données en entrée : l'ID en entrée n'est pas au bon format, la route renvoit une 400
-- Renvoyer une erreur 404 dans le cas où un produit n'est pas trouvé 
+- Toujours en TDD, ajouter la vérification des données en entrée : l'ID en entrée n'est pas au bon format, la route renvoit une 400
+- Renvoyer une erreur 404 dans le cas où un produit n'est pas trouvé
 
 ## Etape 7 : Déployer sur Heroku
-- Commencer à la fin de l'étape 5 : `git checkout step-6`
-- Rendez-vous heroku.com 
-- Après avoir créé son compte, vous pouvez créer puis déployer une application à partir de son code source publié sur github 
+
+- Commencer à la fin de l'étape 6 : `git checkout step-6`
+- Rendez-vous heroku.com
+- Après avoir créé son compte, vous pouvez créer puis déployer une application à partir de son code source publié sur github
+
+## Etape 8 : Ajouter une base de données SQLite
+
+- Déplacez-vous à l'étape 8 du TP : `git checkout step-8`
+- Questions :
+  - A quoi servent les librairies `sqlite3` et `sequelize` ?
+  - Quel est le rôle des `models` ?
+  - A quel moment la base de données est-elle impactée par les modifications ?
+  - Utiliseriez-vous `sqlite3` en production ?
+  - Quelles sont les limites d'une librairie comme `sequelize` ?
+
+## Etape 9 : Ajouter des données en base via la route de création de produits
+
+- Commencer à la fin de l'étape 8 : `git checkout step-8`
+- Créer un nouveau endpoint : `POST /produits`
+- Ce endpoint va recevoir un body qui doit correspondre au format des données suivant :
+  ```json
+  {
+    "type": "service | soin", // string
+    "code_interne": "un code interne", // string
+    "titre": "un titre", // string
+    // string
+    "description_courte": "une description courte",
+    // string
+    "description": "une description longue"
+  }
+  ```
+- Ce endpoint doit s'appuyer sur un service qui va faire appel à la base de données nouvellement créée
+- Attention, c'est à vous de générer l'ID du produit
+- En réponse, nous nous attendons à une 201, accompagné de l'ID du produit nouvellement créé
+
+## Etape 10 : lire les produits en base de données
+
+- Commencer à la fin de l'étape 9 : `git checkout step-9`
+- Les données sont actuellements lues dans le fichier `products-from-file.js`
+- Créez des fonctions de lecture en base de données au sein du repository et appuyez-vous dessus lors des `GET /produits` et `GET /produits/{id}`
