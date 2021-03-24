@@ -36,10 +36,28 @@ describe("GET /produits/{id}", function () {
 
                 // THEN
                 .expect(404, (err, resp) => {
-                    console.log({resp: resp.body})
                     expect(resp.body.statusCode).to.eql(404);
                     expect(resp.body.error).to.eql("Not Found");
                     expect(resp.body.message).to.eql("Le produit n'existe pas.");
+                    done()
+                })
+        })
+    })
+
+    describe("L'ID fourni n'est pas au format UUID", function () {
+        it("renvoi une erreur 400", function (done) {
+            // GIVEN 
+            const notAnUuid = "some-value"
+
+            // WHEN
+            request(server.listener)
+                .get(`/produits/${notAnUuid}`)
+
+                // THEN
+                .expect(404, (err, resp) => {
+                    expect(resp.body.statusCode).to.eql(400);
+                    expect(resp.body.error).to.eql("Bad Request");
+                    expect(resp.body.message).to.eql("Invalid request params input");
                     done()
                 })
         })
