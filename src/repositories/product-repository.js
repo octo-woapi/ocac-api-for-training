@@ -4,9 +4,15 @@ const create = async (product) => {
     await ProductModel.create(product);
 };
 
-const findAll = async () => {
-    const result = await ProductModel.findAll();
-    return result;
+const findAll = async (providedType) => {
+    if(!providedType) {
+        return ProductModel.findAll();
+    }
+    return ProductModel.findAll({
+        where: {
+            type: providedType
+        }
+    });
   };
   
 const findOne = async (productId) => {

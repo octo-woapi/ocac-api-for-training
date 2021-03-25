@@ -1,10 +1,22 @@
+const Joi = require("joi");
 const productsBusiness = require("../../business/products/products");
 
 exports.listProductsRoute = {
   method: "GET",
   path: "/produits",
+  options: {
+    validate: {
+      query: Joi.object({
+        type: Joi.string()
+        .example("soin | service")
+        .valid('service', 'soin')
+        .description("Type de produit")
+      })
+    }
+  },
   handler: async (request, h) => {
-    const productsList = await productsBusiness.listProducts();
+    const providedType = request.query.type || null;
+    const productsList = await productsBusiness.listProducts(providedType);
     const formattedProducts = productsFormat(productsList);
     return h.response(formattedProducts);
   },

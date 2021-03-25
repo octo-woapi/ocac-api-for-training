@@ -2,8 +2,8 @@ const { v4: uuidv4 } = require('uuid');
 const productsFromFile = require("../../datas/products-from-file");
 const { productRepository } = require("../../repositories/product-repository")
 
-exports.listProducts = () => {
-  return productRepository.findAll();
+exports.listProducts = (providedType) => {
+  return productRepository.findAll(providedType);
 };
 
 exports.findProduct = async (productId) => {
