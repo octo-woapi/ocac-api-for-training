@@ -73,8 +73,69 @@ describe("GET /produits", function () {
     const response = await request(server.listener)
       .get("/produits")
 
+    // THEN
+    expect(response.statusCode).to.eql(200);
+    expect(response.body).to.eql(expected);
+  });
+
+  describe("Un type est transmis en query param", function () {
+    it("renvoi une liste de produits correspondants au type", async function () {
+      // GIVEN
+      const firstProduct = {
+        id: "c2f0e01e-9595-4ef2-bbfd-b9b87cc920c0",
+        type: "service",
+        titre:
+          "first title",
+        code_interne: "first",
+        description: "first",
+        description_courte:
+          "Disposez d'un guide pratique pour comprendre votre...",
+      }
+      const secondProduct = {
+        id: "d3cf9e13-dba2-4ca0-b520-b415667f6234",
+        type: "soin",
+        titre: "second title",
+        code_interne: "second",
+        description: "second",
+        description_courte:
+          "Obtenez une réponse rapide et personnalisée à toutes vos questions d’ordre médical.",
+      }
+
+      await productRepository.create(firstProduct)
+      await productRepository.create(secondProduct)
+
+      const expected = [
+        {
+          id: "d3cf9e13-dba2-4ca0-b520-b415667f6234",
+          type: "soin",
+          titre: "second title",
+          description_courte:
+            "Obtenez une réponse rapide et personnalisée à toutes vos questions d’ordre médical.",
+        }
+      ];
+
+      // WHEN
+      const response = await request(server.listener)
+        .get("/produits")
+        .query({ type: 'soin' })
+
       // THEN
       expect(response.statusCode).to.eql(200);
       expect(response.body).to.eql(expected);
-  });
-});
+    });
+
+    describe("Le type transmis n'est pas au bon format", function () {
+      it("renvoi une erreur 400", async function () {
+        // WHEN
+        const response = await request(server.listener)
+          .get("/produits")
+          .query({ type: 'unknownType' })
+
+        // THEN
+        expect(response.body.statusCode).to.eql(400);
+        expect(response.body.error).to.eql("Bad Request");
+        expect(response.body.message).to.eql("Invalid request query input");
+      });
+    });
+  })
+})
