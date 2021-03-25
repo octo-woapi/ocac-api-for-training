@@ -5,7 +5,7 @@ const create = async (product) => {
 };
 
 const findAll = async (providedType) => {
-    if(!providedType) {
+    if (!providedType) {
         return ProductModel.findAll();
     }
     return ProductModel.findAll({
@@ -13,11 +13,15 @@ const findAll = async (providedType) => {
             type: providedType
         }
     });
-  };
-  
+};
+
 const findOne = async (productId) => {
     return await ProductModel.findOne({ where: { id: productId } });
 };
+
+const updateType = async (productId, newType) => {
+    return ProductModel.update({ type: newType }, { where: { id: productId } })
+}
 
 const remove = async (productId) => {
     await ProductModel.destroy({
@@ -29,9 +33,9 @@ const remove = async (productId) => {
 
 const removeAll = async (productId) => {
     await ProductModel.destroy({
-        where: { },
+        where: {},
         truncate: true
     });
 }
 
-exports.productRepository = { create, findAll, findOne, remove, removeAll };
+exports.productRepository = { create, findAll, findOne, remove, removeAll, updateType };

@@ -13,7 +13,11 @@ exports.findProduct = async (productId) => {
 
 exports.createProduct = async (productToCreate) => {
   const productId = uuidv4();
-  const productWithId = { ...productToCreate, id: productId } 
+  const productWithId = { ...productToCreate, id: productId }
   await productRepository.create(productWithId)
   return productWithId
+}
+
+exports.updateType = async (productId, newType) => {
+  return productRepository.updateType(productId, newType)
 }
